@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Syllabus Tracker</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Syllabus Tracker</h1>
+    </header>
+    <main>
+        <section id="syllabus">
+            <h2>Your Syllabus</h2>
+            <ul>
+                <li>Course 1: <a href="{% url 'course_detail' course.id %}">View Details</a></li>
+                <li>Course 2: <a href="{% url 'course_detail' course.id %}">View Details</a></li>
+                <li>Course 3: <a href="{% url 'course_detail' course.id %}">View Details</a></li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Syllabus Tracker</p>
+    </footer>
+</body>
+</html>
