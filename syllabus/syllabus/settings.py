@@ -38,12 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-<<<<<<< HEAD
     'accounts',
     'syllabus_tracker',
-=======
     'subject',
->>>>>>> 6a2beae6b079b7ab8e26ec8bcd9888130852c84b
 ]
 
 MIDDLEWARE = [
@@ -129,8 +126,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-<<<<<<< HEAD
 AUTH_USER_MODEL = "accounts.User"
-=======
 
->>>>>>> 6a2beae6b079b7ab8e26ec8bcd9888130852c84b

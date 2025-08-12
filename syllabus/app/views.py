@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Syllabus
@@ -32,4 +30,3 @@ class SyllabusDeleteView(DeleteView):
 
 
 
->>>>>>> 6a2beae6b079b7ab8e26ec8bcd9888130852c84b

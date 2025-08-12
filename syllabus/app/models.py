@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-=======
 from django.db import models
-from django.contrib.auth.models import User
+from accounts.models import User
 
 
 
@@ -12,4 +10,3 @@ class Syllabus(models.Model):
 
     def __str__(self):
         return self.name
->>>>>>> 6a2beae6b079b7ab8e26ec8bcd9888130852c84b

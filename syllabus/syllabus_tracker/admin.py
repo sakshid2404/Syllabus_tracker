@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app.models import StudySession, Revision, ProgressReport
+from syllabus_tracker.models import StudySession, Revision, ProgressReport
 
 
 class StudySessionAdmin(admin.ModelAdmin):
