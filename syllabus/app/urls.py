@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 from django.urls import path
 from . import views
 urlpatterns = [
@@ -9,3 +11,4 @@ urlpatterns = [
     
     
 ]
+>>>>>>> 6a2beae6b079b7ab8e26ec8bcd9888130852c84b
