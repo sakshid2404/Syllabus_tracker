@@ -1,0 +1,10 @@
+{% extends "app/list.html" %}
+
+{% block content %}
+<h2>Delete {{ model_name }}</h2>
+<p>Are you sure you want to delete "{{ object }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger">Yes, Delete</button>
+</form>
+{% endblock %}

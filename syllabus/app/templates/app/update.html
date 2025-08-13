@@ -1,0 +1,10 @@
+{% extends "app/list.html" %}
+
+{% block content %}
+<h2>Update {{ model_name }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary">Update</button>
+</form>
+{% endblock %}

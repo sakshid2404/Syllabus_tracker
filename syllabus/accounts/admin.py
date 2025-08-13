@@ -1,7 +1,12 @@
 from django.contrib import admin
-from app.models import User
+from django.contrib.auth.admin import UserAdmin
+from .models import User
 
-class UserAdmin(admin.ModelAdmin):
-    list_display=('username','email','password','created_at')
-    
-admin.site.register(User,UserAdmin)
+@admin.register(User)
+class CustomUserAdmin(UserAdmin):
+    model = User
+    list_display = ['username', 'email', 'is_staff', 'created_at']
+    fieldsets = UserAdmin.fieldsets + (
+        (None, {'fields': ('created_at',)}),
+    )
+    readonly_fields = ['created_at']
