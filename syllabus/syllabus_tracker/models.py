@@ -1,10 +1,12 @@
 from django.db import models
 from accounts.models import User
-from subject.models import Topic, Subtopic, Subject
+from subject.models import Topic, Subtopic, Subject,Chapter
 
 
 class StudySession(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    subject = models.ForeignKey(Subject, on_delete=models.SET_NULL, null=True, blank=True)
+    chapter = models.ForeignKey(Chapter, on_delete=models.SET_NULL, null=True, blank=True)
     topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True, blank=True)
     subtopic = models.ForeignKey(Subtopic, on_delete=models.SET_NULL, null=True, blank=True)
     date = models.DateField()
@@ -19,7 +21,9 @@ class StudySession(models.Model):
 class Revision(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    chapter = models.ForeignKey(Chapter, on_delete=models.SET_NULL, null=True, blank=True)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    subtopic = models.ForeignKey(Subtopic, on_delete=models.SET_NULL, null=True, blank=True)
     date = models.DateField()
     revision_type = models.CharField(max_length=50, choices=[
         ("quick", "Quick Review"),

@@ -1,11 +1,9 @@
-from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import  Subject, Chapter, Topic, Subtopic
-# Create your views here.
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-
-class SubjectListView(ListView):
+class SubjectListView(LoginRequiredMixin,ListView):
     model = Subject
     template_name = 'app/list.html'
     context_object_name = 'subjects'
@@ -13,10 +11,9 @@ class SubjectListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Get the model fields
         fields = [field.name for field in self.model._meta.fields]
 
-        # Convert objects into list of dicts
+
         object_data = [
             {field: getattr(obj, field) for field in fields}
             for obj in context['object_list']
@@ -32,7 +29,7 @@ class SubjectListView(ListView):
 
 
 
-class SubjectCreateView(CreateView):
+class SubjectCreateView(LoginRequiredMixin,CreateView):
     model = Subject
     template_name = 'app/form.html'
     fields = ['name', 'syllabus', 'goal_hour']
@@ -45,7 +42,7 @@ class SubjectCreateView(CreateView):
 
 
 
-class SubjectUpdateView(UpdateView):
+class SubjectUpdateView(LoginRequiredMixin,UpdateView):
     model = Subject
     template_name = 'app/update.html'
     fields = ['name', 'syllabus', 'goal_hour']
@@ -58,7 +55,7 @@ class SubjectUpdateView(UpdateView):
 
 
 
-class SubjectDeleteView(DeleteView):
+class SubjectDeleteView(LoginRequiredMixin,DeleteView):
     model = Subject
     template_name = 'app/delete.html'
     success_url = reverse_lazy('subject-list')
@@ -70,7 +67,7 @@ class SubjectDeleteView(DeleteView):
 
 
 
-class ChapterListView(ListView):
+class ChapterListView(LoginRequiredMixin,ListView):
     model = Chapter
     template_name = 'app/list.html'
     context_object_name = 'chapters'
@@ -78,10 +75,8 @@ class ChapterListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Get the model fields
         fields = [field.name for field in self.model._meta.fields]
 
-        # Convert objects into list of dicts
         object_data = [
             {field: getattr(obj, field) for field in fields}
             for obj in context['object_list']
@@ -96,7 +91,7 @@ class ChapterListView(ListView):
         return context
 
 
-class ChapterCreateView(CreateView):
+class ChapterCreateView(LoginRequiredMixin,CreateView):
     model = Chapter
     template_name = 'app/form.html'
     fields = ['title', 'subject']
@@ -109,7 +104,7 @@ class ChapterCreateView(CreateView):
 
 
 
-class ChapterUpdateView(UpdateView):
+class ChapterUpdateView(LoginRequiredMixin,UpdateView):
     model = Chapter
     template_name = 'app/update.html'
     fields = ['title', 'subject']
@@ -122,7 +117,7 @@ class ChapterUpdateView(UpdateView):
 
 
 
-class ChapterDeleteView(DeleteView):
+class ChapterDeleteView(LoginRequiredMixin,DeleteView):
     model = Chapter
     template_name = 'app/delete.html'
     success_url = reverse_lazy('chapter-list')
@@ -134,7 +129,7 @@ class ChapterDeleteView(DeleteView):
 
 
 
-class TopicListView(ListView):
+class TopicListView(LoginRequiredMixin,ListView):
     model = Topic
     template_name = 'app/list.html'
     context_object_name = 'topics'
@@ -142,10 +137,8 @@ class TopicListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Get the model fields
         fields = [field.name for field in self.model._meta.fields]
 
-        # Convert objects into list of dicts
         object_data = [
             {field: getattr(obj, field) for field in fields}
             for obj in context['object_list']
@@ -161,7 +154,7 @@ class TopicListView(ListView):
 
 
 
-class TopicCreateView(CreateView):
+class TopicCreateView(LoginRequiredMixin,CreateView):
     model = Topic
     template_name = 'app/form.html'
     fields = ['title', 'chapter']
@@ -171,10 +164,10 @@ class TopicCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context['model_name'] = self.model._meta.verbose_name.title()
         return context
+LoginRequiredMixin,
 
 
-
-class TopicUpdateView(UpdateView):
+class TopicUpdateView(LoginRequiredMixin,UpdateView):
     model = Topic
     template_name = 'app/update.html'
     fields = ['title', 'chapter']
@@ -187,7 +180,7 @@ class TopicUpdateView(UpdateView):
 
 
 
-class TopicDeleteView(DeleteView):
+class TopicDeleteView(LoginRequiredMixin,DeleteView):
     model = Topic
     template_name = 'app/delete.html'
     success_url = reverse_lazy('topic-list')
@@ -199,7 +192,7 @@ class TopicDeleteView(DeleteView):
 
 
 
-class SubtopicListView(ListView):
+class SubtopicListView(LoginRequiredMixin,ListView):
     model = Subtopic
     template_name = 'app/list.html'
     context_object_name = 'subtopics'
@@ -207,10 +200,9 @@ class SubtopicListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Get the model fields
+    
         fields = [field.name for field in self.model._meta.fields]
 
-        # Convert objects into list of dicts
         object_data = [
             {field: getattr(obj, field) for field in fields}
             for obj in context['object_list']
@@ -226,7 +218,7 @@ class SubtopicListView(ListView):
 
 
 
-class SubtopicCreateView(CreateView):
+class SubtopicCreateView(LoginRequiredMixin,CreateView):
     model = Subtopic
     template_name = 'app/form.html'
     fields = ['title', 'topic']
@@ -239,7 +231,7 @@ class SubtopicCreateView(CreateView):
 
 
 
-class SubtopicUpdateView(UpdateView):
+class SubtopicUpdateView(LoginRequiredMixin,UpdateView):
     model = Subtopic
     template_name = 'app/update.html'
     fields = ['title', 'topic']
@@ -252,7 +244,7 @@ class SubtopicUpdateView(UpdateView):
 
 
 
-class SubtopicDeleteView(DeleteView):
+class SubtopicDeleteView(LoginRequiredMixin,DeleteView):
     model = Subtopic
     template_name = 'app/delete.html'
     success_url = reverse_lazy('subtopic-list')

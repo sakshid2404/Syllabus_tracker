@@ -1,9 +1,10 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Syllabus
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class SyllabusListView(ListView):
+class SyllabusListView(LoginRequiredMixin,ListView):
     model = Syllabus
     template_name = 'app/list.html'
     context_object_name = 'syllabuses'
@@ -11,10 +12,9 @@ class SyllabusListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Get the model fields
+
         fields = [field.name for field in self.model._meta.fields]
 
-        # Convert objects into list of dicts
         object_data = [
             {field: getattr(obj, field) for field in fields}
             for obj in context['object_list']
@@ -29,7 +29,7 @@ class SyllabusListView(ListView):
         return context
 
 
-class SyllabusCreateView(CreateView):
+class SyllabusCreateView(LoginRequiredMixin,CreateView):
     model = Syllabus
     template_name = 'app/form.html'
     fields = ['name', 'user']
@@ -41,7 +41,7 @@ class SyllabusCreateView(CreateView):
         return context
 
 
-class SyllabusUpdateView(UpdateView):
+class SyllabusUpdateView(LoginRequiredMixin,UpdateView):
     model = Syllabus
     template_name = 'app/update.html'
     fields = ['name', 'user']
@@ -54,7 +54,7 @@ class SyllabusUpdateView(UpdateView):
 
 
 
-class SyllabusDeleteView(DeleteView):
+class SyllabusDeleteView(LoginRequiredMixin,DeleteView):
     model = Syllabus
     template_name = 'app/delete.html'
     success_url = reverse_lazy('syllabus-list')
