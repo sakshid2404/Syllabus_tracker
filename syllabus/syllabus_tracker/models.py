@@ -4,11 +4,11 @@ from subject.models import Topic, Subtopic, Subject,Chapter
 
 
 class StudySession(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    subject = models.ForeignKey(Subject, on_delete=models.SET_NULL, null=True, blank=True)
-    chapter = models.ForeignKey(Chapter, on_delete=models.SET_NULL, null=True, blank=True)
-    topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True, blank=True)
-    subtopic = models.ForeignKey(Subtopic, on_delete=models.SET_NULL, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    subtopic = models.ForeignKey(Subtopic, on_delete=models.CASCADE)
     date = models.DateField()
     duration_min = models.PositiveIntegerField()
     is_completed = models.BooleanField(default=False)
@@ -21,9 +21,9 @@ class StudySession(models.Model):
 class Revision(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
-    chapter = models.ForeignKey(Chapter, on_delete=models.SET_NULL, null=True, blank=True)
+    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    subtopic = models.ForeignKey(Subtopic, on_delete=models.SET_NULL, null=True, blank=True)
+    subtopic = models.ForeignKey(Subtopic, on_delete=models.CASCADE)
     date = models.DateField()
     revision_type = models.CharField(max_length=50, choices=[
         ("quick", "Quick Review"),

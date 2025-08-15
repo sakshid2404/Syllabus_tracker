@@ -32,7 +32,7 @@ class SyllabusListView(LoginRequiredMixin,ListView):
 class SyllabusCreateView(LoginRequiredMixin,CreateView):
     model = Syllabus
     template_name = 'app/form.html'
-    fields = ['name', 'user']
+    fields = ['name']
     success_url = reverse_lazy('syllabus-list')
     
     def get_context_data(self, **kwargs):
