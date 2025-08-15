@@ -9,7 +9,11 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)  
+<<<<<<< HEAD
             return redirect('syllabus-list')  
+=======
+            return redirect('home')  
+>>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
     else:
         form = RegisterForm()
     return render(request, 'accounts/register.html', {'form': form})

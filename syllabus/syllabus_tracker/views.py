@@ -9,9 +9,8 @@ class StudySessionListView(LoginRequiredMixin,ListView):
     template_name = 'app/list.html'
     context_object_name = 'study_sessions'
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
 
+<<<<<<< HEAD
         fields = [field.name for field in self.model._meta.fields]
 
         object_data = [
@@ -29,12 +28,15 @@ class StudySessionListView(LoginRequiredMixin,ListView):
 
 
 
+=======
+>>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class StudySessionCreateView(LoginRequiredMixin,CreateView):
     model = StudySession
     template_name = 'app/form.html'
     fields = ['user', 'topic', 'subtopic', 'date', 'duration_min', 'is_completed']
     success_url = reverse_lazy('studysession-list')
     
+<<<<<<< HEAD
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['model_name'] = self.model._meta.verbose_name.title()
@@ -42,11 +44,15 @@ class StudySessionCreateView(LoginRequiredMixin,CreateView):
 
 
 
+=======
+   
+>>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class StudySessionUpdateView(LoginRequiredMixin,UpdateView):
     model = StudySession
     template_name = 'app/update.html'
     fields = ['user', 'topic', 'subtopic', 'date', 'duration_min', 'is_completed']
     success_url = reverse_lazy('studysession-list')
+<<<<<<< HEAD
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -55,26 +61,28 @@ class StudySessionUpdateView(LoginRequiredMixin,UpdateView):
 
 
 
+=======
+  
+  
+>>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class StudySessionDeleteView(LoginRequiredMixin,DeleteView):
     model = StudySession
     template_name = 'app/delete.html'
     success_url = reverse_lazy('studysession-list')
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['model_name'] = self.model._meta.verbose_name.title()
-        return context
+
+<<<<<<< HEAD
 
 
-
+=======
+>>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class RevisionListView(LoginRequiredMixin,ListView):
     model = Revision
     template_name = 'app/list.html'
     context_object_name = 'revisions'
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
 
+<<<<<<< HEAD
         fields = [field.name for field in self.model._meta.fields]
 
         object_data = [
@@ -92,12 +100,15 @@ class RevisionListView(LoginRequiredMixin,ListView):
 
 
 
+=======
+>>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class RevisionCreateView(LoginRequiredMixin,CreateView):
     model = Revision
     template_name = 'app/form.html'
     fields = ['user', 'subject', 'topic', 'date', 'revision_type']
     success_url = reverse_lazy('revision-list')
     
+<<<<<<< HEAD
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['model_name'] = self.model._meta.verbose_name.title()
@@ -105,12 +116,16 @@ class RevisionCreateView(LoginRequiredMixin,CreateView):
 
 
 
+=======
+   
+>>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class RevisionUpdateView(LoginRequiredMixin,UpdateView):
     model = Revision
     template_name = 'app/update.html'
     fields = ['user', 'subject', 'topic', 'date', 'revision_type']
     success_url = reverse_lazy('revision-list')
     
+<<<<<<< HEAD
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['model_name'] = self.model._meta.verbose_name.title()
@@ -118,11 +133,15 @@ class RevisionUpdateView(LoginRequiredMixin,UpdateView):
 
 
 
+=======
+   
+>>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class RevisionDeleteView(LoginRequiredMixin,DeleteView):
     model = Revision
     template_name = 'app/delete.html'
     success_url = reverse_lazy('revision-list')
     
+<<<<<<< HEAD
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['model_name'] = self.model._meta.verbose_name.title()
@@ -130,11 +149,15 @@ class RevisionDeleteView(LoginRequiredMixin,DeleteView):
 
 
 
+=======
+   
+>>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class ProgressReportListView(LoginRequiredMixin,ListView):
     model = ProgressReport
     template_name = 'app/list.html'
     context_object_name = 'reports'
     
+<<<<<<< HEAD
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -155,37 +178,40 @@ class ProgressReportListView(LoginRequiredMixin,ListView):
 
 
 
+=======
+  
+>>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class ProgressReportCreateView(LoginRequiredMixin,CreateView):
     model = ProgressReport
     template_name = 'app/form.html'
     fields = ['user', 'date', 'study_sessions', 'revisions', 'subjects', 'total_study_time', 'total_revision_time']
     success_url = reverse_lazy('progressreport-list')
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['model_name'] = self.model._meta.verbose_name.title()
-        return context
+  
+
+<<<<<<< HEAD
 
 
-
+=======
+>>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class ProgressReportUpdateView(LoginRequiredMixin,UpdateView):
     model = ProgressReport
     template_name = 'app/update.html'
     fields = ['user', 'date', 'study_sessions', 'revisions', 'subjects', 'total_study_time', 'total_revision_time']
     success_url = reverse_lazy('progressreport-list')
 
+<<<<<<< HEAD
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['model_name'] = self.model._meta.verbose_name.title()
         return context
 
 
+=======
+   
+>>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class ProgressReportDeleteView(LoginRequiredMixin,DeleteView):
     model = ProgressReport
     template_name = 'app/delete.html'
     success_url = reverse_lazy('progressreport-list')
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['model_name'] = self.model._meta.verbose_name.title()
-        return context
+    

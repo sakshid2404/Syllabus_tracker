@@ -1,7 +1,7 @@
 from django.contrib import admin
 from subject.models import Subject, Chapter, Topic, Subtopic
 
-# Register your models here.
+
 class SubjectAdmin(admin.ModelAdmin):
     list_display=('name','syllabus','created_at','goal_hour')
 
