@@ -13,11 +13,8 @@ class StudySession(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-<<<<<<< HEAD
         return str(self.date)
-=======
-        return f"{self.date}"
->>>>>>> 3d75138126cb3fff9bad839173cb6795ce19e372
+    
 
    
 class Revision(models.Model):
@@ -45,7 +42,4 @@ class ProgressReport(models.Model):
     total_revision_time = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
-<<<<<<< HEAD
    
-=======
->>>>>>> 3d75138126cb3fff9bad839173cb6795ce19e372

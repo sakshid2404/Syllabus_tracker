@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from django.contrib.auth import login, logout
 from django.views.generic import FormView, View
 from django.shortcuts import redirect
@@ -33,5 +32,3 @@ class LogoutView(View):
     def get(self, request):
         logout(request)
         return redirect('login')
-=======
->>>>>>> 3d75138126cb3fff9bad839173cb6795ce19e372
