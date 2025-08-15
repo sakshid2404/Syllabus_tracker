@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import StudySession, Revision,  ProgressReport
@@ -266,3 +268,4 @@ class ProgressReportDeleteView(LoginRequiredMixin,DeleteView):
         context['model_name'] = self.model.__name__
         context['list_url_name'] = 'syllabus-list'
         return context
+>>>>>>> 3d75138126cb3fff9bad839173cb6795ce19e372
