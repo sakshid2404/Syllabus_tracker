@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Syllabus Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Syllabus Tracker</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'syllabus-list' %}">Syllabus</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'subject-list' %}">Subjects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'chapter-list' %}">Chapter</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="{% url 'topic-list' %}">Topic</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'subtopic-list' %}">SubTopic</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="{% url 'studysession-list' %}">Study Sessions</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'revision-list' %}">Revisions</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="{% url 'progressreport-list' %}">Progress Report</a>
+        </li> 
+      </ul>
+
+      <ul class="navbar-nav ms-auto">
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <span class="navbar-text text-white me-3">Hello, {{ user.username }}</span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+        {% else %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+    {% block content %}
+    <h2>{{ model_name|title }} List</h2>
+
+    {% if user.is_authenticated %}
+      <a href="{% url model_name|lower|add:'-create' %}" class="btn btn-success mb-3">Create New</a>
+
+     {% endif %} 
+
+    <table class="table table-bordered">
+
+      <thead>
+        <tr>
+          {% for field in fields %}
+            <th>{{ field|capfirst }}</th>
+          {% endfor %}
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in object_data %}
+        <tr>
+          {% for val in row.values %}
+            <td>{{ val }}</td>
+          {% endfor %}
+          <td>
+            {% if user.is_authenticated %}
+              <a href="{% url model_name|lower|add:'-update' row.id %}" class="btn btn-warning btn-sm">Edit</a>
+              <a href="{% url model_name|lower|add:'-delete' row.id %}" class="btn btn-danger btn-sm">Delete</a>
+            {% else %}
+              <span class="text-muted">Login to manage</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endblock %}
+</div>
+
+
+</body>
+</html>
