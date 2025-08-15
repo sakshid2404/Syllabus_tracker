@@ -29,6 +29,8 @@ class StudySessionListView(LoginRequiredMixin,ListView):
 
         return context
 
+    def get_queryset(self):
+         return StudySession.objects.filter(user=self.request.user)
 
 
 class StudySessionCreateView(LoginRequiredMixin,CreateView):
@@ -56,7 +58,6 @@ class StudySessionCreateView(LoginRequiredMixin,CreateView):
         return context
 
 
-   
 class StudySessionUpdateView(LoginRequiredMixin,UpdateView):
     model = StudySession
     template_name = 'app/update.html'
@@ -65,7 +66,6 @@ class StudySessionUpdateView(LoginRequiredMixin,UpdateView):
     
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
-        # Add datepicker class to date field
         form.fields['date'].widget.attrs.update({
             'class': 'form-control datepicker',
             'autocomplete': 'off'
@@ -79,7 +79,7 @@ class StudySessionUpdateView(LoginRequiredMixin,UpdateView):
         return context
 
 
-
+  
   
   
 class StudySessionDeleteView(LoginRequiredMixin,DeleteView):
@@ -94,7 +94,6 @@ class StudySessionDeleteView(LoginRequiredMixin,DeleteView):
         return context
 
     
-
 
 
 class RevisionListView(LoginRequiredMixin,ListView):
@@ -122,6 +121,8 @@ class RevisionListView(LoginRequiredMixin,ListView):
         return context
 
 
+    def get_queryset(self):
+         return Revision.objects.filter(user=self.request.user)
 
 class RevisionCreateView(LoginRequiredMixin,CreateView):
     model = Revision
@@ -132,7 +133,6 @@ class RevisionCreateView(LoginRequiredMixin,CreateView):
     
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
-        # Add datepicker class to date field
         form.fields['date'].widget.attrs.update({
             'class': 'form-control datepicker',
             'autocomplete': 'off'
@@ -149,12 +149,12 @@ class RevisionCreateView(LoginRequiredMixin,CreateView):
         context['list_url_name'] = 'syllabus-list'
         return context
 
-
+    
    
 class RevisionUpdateView(LoginRequiredMixin,UpdateView):
     model = Revision
     template_name = 'app/update.html'
-    fields =[ 'subject','chapter', 'topic','subtopic', 'date', 'revision_type']
+    fields =['subject','chapter', 'topic','subtopic', 'date', 'revision_type']
     success_url = reverse_lazy('revision-list')
     
     def get_context_data(self, **kwargs):
@@ -163,7 +163,7 @@ class RevisionUpdateView(LoginRequiredMixin,UpdateView):
         context['list_url_name'] = 'syllabus-list'
         return context
 
-
+    
 
    
 class RevisionDeleteView(LoginRequiredMixin,DeleteView):
@@ -203,18 +203,20 @@ class ProgressReportListView(LoginRequiredMixin,ListView):
 
         return context
 
+    
+    def get_queryset(self):
+         return ProgressReport.objects.filter(user=self.request.user)
 
 
   
 class ProgressReportCreateView(LoginRequiredMixin,CreateView):
     model = ProgressReport
     template_name = 'app/form.html'
-    fields = ['date', 'study_sessions', 'revisions', 'subjects', 'total_study_time', 'total_revision_time']
+    fields = ['date', 'study_sessions', 'revisions', 'subjects', 'total_study_time_in_hours', 'total_revision_time_in_hours']
     success_url = reverse_lazy('progressreport-list')
     
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
-        # Add datepicker class to date field
         form.fields['date'].widget.attrs.update({
             'class': 'form-control datepicker',
             'autocomplete': 'off'
@@ -232,7 +234,6 @@ class ProgressReportCreateView(LoginRequiredMixin,CreateView):
         return context
 
 
-
 class ProgressReportUpdateView(LoginRequiredMixin,UpdateView):
     model = ProgressReport
     template_name = 'app/update.html'
@@ -241,7 +242,6 @@ class ProgressReportUpdateView(LoginRequiredMixin,UpdateView):
     
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
-        # Add datepicker class to date field
         form.fields['date'].widget.attrs.update({
             'class': 'form-control datepicker',
             'autocomplete': 'off'
@@ -255,7 +255,6 @@ class ProgressReportUpdateView(LoginRequiredMixin,UpdateView):
         return context
 
 
-   
 class ProgressReportDeleteView(LoginRequiredMixin,DeleteView):
     model = ProgressReport
     template_name = 'app/delete.html'
@@ -266,3 +265,5 @@ class ProgressReportDeleteView(LoginRequiredMixin,DeleteView):
         context['model_name'] = self.model.__name__
         context['list_url_name'] = 'syllabus-list'
         return context
+
+  

@@ -1,8 +1,10 @@
 from django.db import models
 from app.models import Syllabus
+from accounts.models import User
 
   
 class Subject(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     syllabus = models.ForeignKey(Syllabus, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -13,6 +15,7 @@ class Subject(models.Model):
 
   
 class Chapter(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
 
@@ -21,6 +24,7 @@ class Chapter(models.Model):
 
 
 class Topic(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
 
@@ -29,6 +33,7 @@ class Topic(models.Model):
 
 
 class Subtopic(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
    

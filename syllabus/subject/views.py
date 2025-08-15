@@ -27,7 +27,8 @@ class SubjectListView(LoginRequiredMixin,ListView):
 
         return context
 
-    
+    def get_queryset(self):
+         return Subject.objects.filter(user=self.request.user)
 
   
 
@@ -48,7 +49,7 @@ class SubjectCreateView(LoginRequiredMixin,CreateView):
         context['list_url_name'] = 'syllabus-list'
         return context
 
-
+   
 
 class SubjectUpdateView(LoginRequiredMixin,UpdateView):
     model = Subject
@@ -63,7 +64,7 @@ class SubjectUpdateView(LoginRequiredMixin,UpdateView):
         context['list_url_name'] = 'syllabus-list'
         return context
 
-
+  
 class SubjectDeleteView(LoginRequiredMixin,DeleteView):
     model = Subject
     template_name = 'app/delete.html'
@@ -76,7 +77,7 @@ class SubjectDeleteView(LoginRequiredMixin,DeleteView):
         context['list_url_name'] = 'syllabus-list'
         return context
 
-
+  
 class ChapterListView(LoginRequiredMixin,ListView):
     model = Chapter
     template_name = 'app/list.html'
@@ -100,6 +101,8 @@ class ChapterListView(LoginRequiredMixin,ListView):
 
         return context
 
+    def get_queryset(self):
+         return Chapter.objects.filter(user=self.request.user)
 
    
 class ChapterCreateView(LoginRequiredMixin,CreateView):
@@ -132,8 +135,7 @@ class ChapterUpdateView(LoginRequiredMixin,UpdateView):
         context['list_url_name'] = 'syllabus-list'
         return context
 
-
-   
+  
 class ChapterDeleteView(LoginRequiredMixin,DeleteView):
     model = Chapter
     template_name = 'app/delete.html'
@@ -147,8 +149,7 @@ class ChapterDeleteView(LoginRequiredMixin,DeleteView):
         context['list_url_name'] = 'syllabus-list'
         return context
 
-
-   
+    
 class TopicListView(LoginRequiredMixin,ListView):
     model = Topic
     template_name = 'app/list.html'
@@ -172,7 +173,8 @@ class TopicListView(LoginRequiredMixin,ListView):
 
         return context
 
-
+    def get_queryset(self):
+         return Topic.objects.filter(user=self.request.user)
 
   
 class TopicCreateView(LoginRequiredMixin,CreateView):
@@ -191,7 +193,7 @@ class TopicCreateView(LoginRequiredMixin,CreateView):
         context['list_url_name'] = 'syllabus-list'
         return context
 
-
+   
 class TopicUpdateView(LoginRequiredMixin,UpdateView):
     model = Topic
     template_name = 'app/update.html'
@@ -205,7 +207,7 @@ class TopicUpdateView(LoginRequiredMixin,UpdateView):
         context['list_url_name'] = 'syllabus-list'
         return context
 
-
+   
    
 class TopicDeleteView(LoginRequiredMixin,DeleteView):
     model = Topic
@@ -219,8 +221,7 @@ class TopicDeleteView(LoginRequiredMixin,DeleteView):
         context['list_url_name'] = 'syllabus-list'
         return context
 
-
-  
+    
 class SubtopicListView(LoginRequiredMixin,ListView):
     model = Subtopic
     template_name = 'app/list.html'
@@ -245,7 +246,8 @@ class SubtopicListView(LoginRequiredMixin,ListView):
         return context
   
 
-
+    def get_queryset(self):
+         return Subtopic.objects.filter(user=self.request.user)
 
 class SubtopicCreateView(LoginRequiredMixin,CreateView):
     model = Subtopic
@@ -263,8 +265,7 @@ class SubtopicCreateView(LoginRequiredMixin,CreateView):
         context['list_url_name'] = 'syllabus-list'
         return context
 
-
-
+  
    
 class SubtopicUpdateView(LoginRequiredMixin,UpdateView):
     model = Subtopic
@@ -292,3 +293,5 @@ class SubtopicDeleteView(LoginRequiredMixin,DeleteView):
         context['model_name'] = self.model.__name__
         context['list_url_name'] = 'syllabus-list'
         return context
+
+   

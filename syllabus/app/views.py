@@ -28,6 +28,8 @@ class SyllabusListView(LoginRequiredMixin,ListView):
 
         return context
 
+    def get_queryset(self):
+         return Syllabus.objects.filter(user=self.request.user)
 
 
 class SyllabusCreateView(CreateView):
@@ -46,7 +48,7 @@ class SyllabusCreateView(CreateView):
         context['list_url_name'] = 'syllabus-list'
         return context
 
-
+   
 class SyllabusUpdateView(LoginRequiredMixin,UpdateView):
     model = Syllabus
     template_name = 'app/update.html'
@@ -59,7 +61,7 @@ class SyllabusUpdateView(LoginRequiredMixin,UpdateView):
         context['list_url_name'] = 'syllabus-list'
         return context
 
-
+  
 
 class SyllabusDeleteView(LoginRequiredMixin,DeleteView):
     model = Syllabus
@@ -71,3 +73,5 @@ class SyllabusDeleteView(LoginRequiredMixin,DeleteView):
         context['model_name'] = self.model.__name__
         context['list_url_name'] = 'syllabus-list'
         return context
+
+   

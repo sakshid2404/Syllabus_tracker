@@ -11,7 +11,7 @@ class RevisionAdmin(admin.ModelAdmin):
 
 
 class ProgressReportAdmin(admin.ModelAdmin):
-    list_display=('date','study_sessions','revisions','subjects','total_study_time','total_revision_time','created_at')
+    list_display=('date','study_sessions','revisions','subjects','total_study_time_in_hours','total_revision_time_in_hours','created_at')
     
 
 admin.site.register(StudySession,StudySessionAdmin)
