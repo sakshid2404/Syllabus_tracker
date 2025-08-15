@@ -2,17 +2,13 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Syllabus
 from django.contrib.auth.mixins import LoginRequiredMixin
-<<<<<<< HEAD
-
-=======
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 
 class SyllabusListView(LoginRequiredMixin,ListView):
     model = Syllabus
     template_name = 'app/list.html'
     context_object_name = 'syllabuses'
     
-<<<<<<< HEAD
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -33,47 +29,46 @@ class SyllabusListView(LoginRequiredMixin,ListView):
         return context
 
 
-=======
-    
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
-class SyllabusCreateView(LoginRequiredMixin,CreateView):
+
+class SyllabusCreateView(CreateView):
     model = Syllabus
+    fields = ['name'] 
     template_name = 'app/form.html'
-    fields = ['name']
     success_url = reverse_lazy('syllabus-list')
-    
-<<<<<<< HEAD
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user 
+        return super().form_valid(form)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['model_name'] = self.model._meta.verbose_name.title()
+        context['model_name'] = self.model.__name__
+        context['list_url_name'] = 'syllabus-list'
         return context
 
 
-=======
-    
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class SyllabusUpdateView(LoginRequiredMixin,UpdateView):
     model = Syllabus
     template_name = 'app/update.html'
-    fields = ['name', 'user']
+    fields = ['name']
     success_url = reverse_lazy('syllabus-list')
     
-<<<<<<< HEAD
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['model_name'] = self.model._meta.verbose_name.title()
+        context['model_name'] = self.model.__name__
+        context['list_url_name'] = 'syllabus-list'
         return context
 
 
 
-=======
-    
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class SyllabusDeleteView(LoginRequiredMixin,DeleteView):
     model = Syllabus
     template_name = 'app/delete.html'
     success_url = reverse_lazy('syllabus-list')
     
-   
-
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_name'] = self.model.__name__
+        context['list_url_name'] = 'syllabus-list'
+        return context

@@ -8,10 +8,11 @@ class SubjectListView(LoginRequiredMixin,ListView):
     template_name = 'app/list.html'
     context_object_name = 'subjects'
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-<<<<<<< HEAD
+
         fields = [field.name for field in self.model._meta.fields]
-
 
         object_data = [
             {field: getattr(obj, field) for field in fields}
@@ -26,22 +27,29 @@ class SubjectListView(LoginRequiredMixin,ListView):
 
         return context
 
+    
+
+  
 
 
-=======
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class SubjectCreateView(LoginRequiredMixin,CreateView):
     model = Subject
     template_name = 'app/form.html'
     fields = ['name', 'syllabus', 'goal_hour']
     success_url = reverse_lazy('subject-list')
     
+    def form_valid(self, form):
+        form.instance.user = self.request.user 
+        return super().form_valid(form)
 
-<<<<<<< HEAD
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_name'] = self.model.__name__
+        context['list_url_name'] = 'syllabus-list'
+        return context
 
 
-=======
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
+
 class SubjectUpdateView(LoginRequiredMixin,UpdateView):
     model = Subject
     template_name = 'app/update.html'
@@ -49,28 +57,31 @@ class SubjectUpdateView(LoginRequiredMixin,UpdateView):
     success_url = reverse_lazy('subject-list')
     
 
-<<<<<<< HEAD
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_name'] = self.model.__name__
+        context['list_url_name'] = 'syllabus-list'
+        return context
 
 
-=======
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class SubjectDeleteView(LoginRequiredMixin,DeleteView):
     model = Subject
     template_name = 'app/delete.html'
     success_url = reverse_lazy('subject-list')
-    
-
-<<<<<<< HEAD
 
 
-=======
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_name'] = self.model.__name__
+        context['list_url_name'] = 'syllabus-list'
+        return context
+
+
 class ChapterListView(LoginRequiredMixin,ListView):
     model = Chapter
     template_name = 'app/list.html'
     context_object_name = 'chapters'
     
-<<<<<<< HEAD
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -90,60 +101,59 @@ class ChapterListView(LoginRequiredMixin,ListView):
         return context
 
 
-=======
    
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class ChapterCreateView(LoginRequiredMixin,CreateView):
     model = Chapter
     template_name = 'app/form.html'
     fields = ['title', 'subject']
     success_url = reverse_lazy('chapter-list')
     
+    def form_valid(self, form):
+        form.instance.user = self.request.user 
+        return super().form_valid(form)
 
-<<<<<<< HEAD
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_name'] = self.model.__name__
+        context['list_url_name'] = 'syllabus-list'
+        return context
 
 
-=======
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class ChapterUpdateView(LoginRequiredMixin,UpdateView):
     model = Chapter
     template_name = 'app/update.html'
     fields = ['title', 'subject']
     success_url = reverse_lazy('chapter-list')
     
-<<<<<<< HEAD
+   
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['model_name'] = self.model._meta.verbose_name.title()
+        context['model_name'] = self.model.__name__
+        context['list_url_name'] = 'syllabus-list'
         return context
 
 
-
-=======
    
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class ChapterDeleteView(LoginRequiredMixin,DeleteView):
     model = Chapter
     template_name = 'app/delete.html'
     success_url = reverse_lazy('chapter-list')
     
-<<<<<<< HEAD
+
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['model_name'] = self.model._meta.verbose_name.title()
+        context['model_name'] = self.model.__name__
+        context['list_url_name'] = 'syllabus-list'
         return context
 
 
-
-=======
    
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class TopicListView(LoginRequiredMixin,ListView):
     model = Topic
     template_name = 'app/list.html'
     context_object_name = 'topics'
 
-<<<<<<< HEAD
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -164,23 +174,22 @@ class TopicListView(LoginRequiredMixin,ListView):
 
 
 
-=======
   
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class TopicCreateView(LoginRequiredMixin,CreateView):
     model = Topic
     template_name = 'app/form.html'
     fields = ['title', 'chapter']
     success_url = reverse_lazy('topic-list')
-<<<<<<< HEAD
     
+    def form_valid(self, form):
+        form.instance.user = self.request.user 
+        return super().form_valid(form)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['model_name'] = self.model._meta.verbose_name.title()
+        context['model_name'] = self.model.__name__
+        context['list_url_name'] = 'syllabus-list'
         return context
-LoginRequiredMixin,
-=======
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 
 
 class TopicUpdateView(LoginRequiredMixin,UpdateView):
@@ -189,41 +198,37 @@ class TopicUpdateView(LoginRequiredMixin,UpdateView):
     fields = ['title', 'chapter']
     success_url = reverse_lazy('topic-list')
     
-<<<<<<< HEAD
+   
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['model_name'] = self.model._meta.verbose_name.title()
+        context['model_name'] = self.model.__name__
+        context['list_url_name'] = 'syllabus-list'
         return context
 
 
-
-=======
    
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class TopicDeleteView(LoginRequiredMixin,DeleteView):
     model = Topic
     template_name = 'app/delete.html'
     success_url = reverse_lazy('topic-list')
     
-<<<<<<< HEAD
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['model_name'] = self.model._meta.verbose_name.title()
+        context['model_name'] = self.model.__name__
+        context['list_url_name'] = 'syllabus-list'
         return context
 
 
-
-=======
   
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class SubtopicListView(LoginRequiredMixin,ListView):
     model = Subtopic
     template_name = 'app/list.html'
     context_object_name = 'subtopics'
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-<<<<<<< HEAD
-    
         fields = [field.name for field in self.model._meta.fields]
 
         object_data = [
@@ -238,43 +243,52 @@ class SubtopicListView(LoginRequiredMixin,ListView):
         })
 
         return context
+  
 
 
 
-=======
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class SubtopicCreateView(LoginRequiredMixin,CreateView):
     model = Subtopic
     template_name = 'app/form.html'
     fields = ['title', 'topic']
     success_url = reverse_lazy('subtopic-list')
     
-<<<<<<< HEAD
+    def form_valid(self, form):
+        form.instance.user = self.request.user 
+        return super().form_valid(form)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['model_name'] = self.model._meta.verbose_name.title()
+        context['model_name'] = self.model.__name__
+        context['list_url_name'] = 'syllabus-list'
         return context
 
 
 
-=======
    
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class SubtopicUpdateView(LoginRequiredMixin,UpdateView):
     model = Subtopic
     template_name = 'app/update.html'
     fields = ['title', 'topic']
     success_url = reverse_lazy('subtopic-list')
-    
+  
+  
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_name'] = self.model.__name__
+        context['list_url_name'] = 'syllabus-list'
+        return context
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> be03afdc5e7ce0c27c91f101f3cd38415bd0b938
 class SubtopicDeleteView(LoginRequiredMixin,DeleteView):
     model = Subtopic
     template_name = 'app/delete.html'
     success_url = reverse_lazy('subtopic-list')
     
-   
+     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_name'] = self.model.__name__
+        context['list_url_name'] = 'syllabus-list'
+        return context
