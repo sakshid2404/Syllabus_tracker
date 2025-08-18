@@ -7,7 +7,6 @@ urlpatterns = [
     path('studysession/update/<int:pk>/',views. StudySessionUpdateView.as_view(), name='studysession-update'),
     path('studysession/delete/<int:pk>/', views. StudySessionDeleteView.as_view(), name='studysession-delete'),
     
-    
     path('revisions/',views. RevisionListView.as_view(), name='revision-list'),
     path('revision/create/',views. RevisionCreateView.as_view(), name='revision-create'),
     path('revision/update/<int:pk>/',views.RevisionUpdateView.as_view(), name='revision-update'),
