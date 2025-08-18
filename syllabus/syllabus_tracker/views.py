@@ -58,6 +58,7 @@ class StudySessionCreateView(LoginRequiredMixin,CreateView):
         return context
 
 
+
 class StudySessionUpdateView(LoginRequiredMixin,UpdateView):
     model = StudySession
     template_name = 'app/update.html'
