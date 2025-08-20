@@ -7,6 +7,5 @@ urlpatterns = [
     path('syllabus/update/<int:pk>/',views. SyllabusUpdateView.as_view(), name='syllabus-update'),
     path('syllabus/delete/<int:pk>/', views.SyllabusDeleteView.as_view(), name='syllabus-delete'),
 
-    
-    
+ 
 ]
