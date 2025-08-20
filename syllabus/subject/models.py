@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 from django.db import models
 from app.models import Syllabus
 
@@ -37,4 +35,3 @@ class Subtopic(models.Model):
     def __str__(self):
         return self.title
     
->>>>>>> 29d70b9ee3839a678244b211422939127905bb87

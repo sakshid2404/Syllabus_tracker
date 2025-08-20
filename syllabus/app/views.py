@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Syllabus
@@ -77,4 +75,3 @@ class SyllabusDeleteView(LoginRequiredMixin,DeleteView):
 
     def get_queryset(self):
         return Syllabus.objects.filter(user=self.request.user)
->>>>>>> 29d70b9ee3839a678244b211422939127905bb87

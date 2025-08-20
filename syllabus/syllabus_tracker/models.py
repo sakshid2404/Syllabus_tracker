@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 from django.db import models
 from subject.models import Topic, Subtopic, Subject,Chapter,Syllabus
 
@@ -53,4 +51,3 @@ class ProgressReport(models.Model):
 
 
    
->>>>>>> 29d70b9ee3839a678244b211422939127905bb87
