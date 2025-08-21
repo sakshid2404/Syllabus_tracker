@@ -4,8 +4,6 @@ from .models import Subject, Chapter, Topic, Subtopic, Syllabus
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-
-
 class SubjectListView(LoginRequiredMixin, ListView):
     model = Subject
     template_name = 'app/list.html'
