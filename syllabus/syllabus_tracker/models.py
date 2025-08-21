@@ -2,7 +2,6 @@ from django.db import models
 from subject.models import Topic, Subtopic, Subject,Chapter,Syllabus
 
 
-
 class StudySession(models.Model):
     syllabus = models.ForeignKey(Syllabus, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)

@@ -6,7 +6,7 @@ class Subject(models.Model):
     name = models.CharField(max_length=255)
     syllabus = models.ForeignKey(Syllabus, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    goal_hour = models.PositiveIntegerField()
+    goal_hour = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.name
