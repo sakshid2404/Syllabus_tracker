@@ -6,6 +6,7 @@ from subject.models import Subject, Chapter, Topic, Subtopic
 from syllabus_tracker.models import StudySession, Revision, ProgressReport
 from datetime import date
 
+
 class BaseSetup(TestCase):
     def setUp(self):
         self.user1 = User.objects.create_user(username="user1", email="user1@gmail.com", password="pass123")
