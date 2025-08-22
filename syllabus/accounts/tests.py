@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.test import TestCase
 from django.urls import reverse
 from accounts.models import User
@@ -59,3 +60,5 @@ class AccountsViewTests(TestCase):
         })
         self.assertEqual(response.status_code, 200)
         self.assertFormError(response, 'form', None, "Please enter a correct username and password. Note that both fields may be case-sensitive.")
+=======
+>>>>>>> 30d0b5d (updated)
